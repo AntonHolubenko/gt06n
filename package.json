@@ -1,0 +1,31 @@
+{
+  "name": "gt06n",
+  "version": "0.0.1",
+  "description": "GT06N GPS tracker logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonvg2/gt06n.git"
+  },
+  "keywords": [
+    "gps",
+    "gt06"
+  ],
+  "author": "antonvg2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antonvg2/gt06n/issues"
+  },
+  "homepage": "https://github.com/antonvg2/gt06n#readme",
+  "dependencies": {
+    "util":   "latest",
+    "events": "latest",
+    "net":    "latest",
+    "node.extend": "latest",
+    "mysql": "latest",
+    "node-env-file": "latest"
+  }
+}
