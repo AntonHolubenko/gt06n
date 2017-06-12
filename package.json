@@ -21,9 +21,9 @@
   },
   "homepage": "https://github.com/antonvg2/gt06n#readme",
   "dependencies": {
-    "util":   "latest",
+    "util": "latest",
     "events": "latest",
-    "net":    "latest",
+    "net": "latest",
     "node.extend": "latest",
     "mysql": "latest",
     "node-env-file": "latest"
