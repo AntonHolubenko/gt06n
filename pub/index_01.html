@@ -1,0 +1,82 @@
+<html><body>
+<div id="mapdiv"></div>
+<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+<script>
+
+    (function(){
+        var map;
+        var ws;
+        var zoom = 13;
+        var markers;
+        var init = function () {
+            map = new OpenLayers.Map("mapdiv");
+            map.addLayer(new OpenLayers.Layer.OSM());
+
+
+            markers = new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers);
+            wsInit();
+        };
+
+        var addMarker = function (lat, lon) {
+            var lonLat = new OpenLayers.LonLat( lat, lon )
+                .transform(
+                    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                    map.getProjectionObject() // to Spherical Mercator Projection
+                );
+
+
+            markers.addMarker(new OpenLayers.Marker(lonLat));
+            map.setCenter (lonLat, zoom);
+        };
+
+
+        var getDay = function () {
+            ws.send('init');
+        };
+
+        var wsInit = function () {
+            ws = new WebSocket("ws://localhost:3000");
+            ws.onopen = function() {
+                console.log(("WS open"));
+                getDay();
+            };
+
+            ws.onclose = function(event) {
+                if (event.wasClean) {
+                    console.log(('WS close clean'));
+                } else {
+                    console.log(('WS disconected'));
+                }
+                console.log(('Code: ' + event.code + ' reason: ' + event.reason));
+            };
+
+            ws.onmessage = function(e) {
+
+                var data = JSON.parse(e.data);
+                if( typeof data.type != "undefined" ){
+                    switch (data.type){
+                        case 'point':
+                            addMarker(data.lon, data.lat);
+                            break;
+                    }
+                }
+                console.log(data);
+
+            };
+
+            ws.onerror = function(error) {
+                console.log(("Error " + error.message));
+            };
+        };
+
+        init();
+//        addMarker(50.41616, 30.634285)
+
+    })();
+
+
+
+
+</script>
+</body></html>
