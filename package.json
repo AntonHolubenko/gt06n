@@ -1,0 +1,22 @@
+{
+  "name": "gt06n_server",
+  "version": "0.9",
+  "description": "Gt06n server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonvg2/gt06n.git"
+  },
+  "author": "Anton Holubenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antonvg2/gt06n/issues"
+  },
+  "homepage": "https://github.com/antonvg2/gt06n#readme",
+  "dependencies": {
+    "net": "^1.0.2"
+  }
+}
